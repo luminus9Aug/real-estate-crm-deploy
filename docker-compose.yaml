@@ -53,16 +53,7 @@ services:
       POSTGRES_DB: propertysales_db
       # Tuning: shared_buffers 256MB, work_mem 16MB, max_connections 100
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
-    command: >
-      postgres
-        -c shared_buffers=256MB
-        -c work_mem=16MB
-        -c maintenance_work_mem=128MB
-        -c effective_cache_size=768MB
-        -c max_connections=100
-        -c synchronous_commit=off
-        -c wal_compression=on
-        -c log_min_duration_statement=500
+
     volumes:
       - pgdata:/var/lib/postgresql/data
       # Init SQL: enable pg_trgm & pgcrypto on first boot
