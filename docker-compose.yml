@@ -143,7 +143,9 @@ services:
     container_name: crm_backend
     restart: unless-stopped
     env_file:
-      - ./Backend/.env.docker
+      - .env
+    environment:
+      - PORT=3001
     ports:
       - "3001:3001"
     networks:
@@ -168,20 +170,21 @@ services:
       # NEXT_PUBLIC_* vars baked at build time
       args:
         INTERNAL_API_URL: http://backend:3001
-        NEXT_PUBLIC_API_URL: http://localhost:3001
-        NEXT_PUBLIC_WS_URL: http://localhost:3001
-        NEXT_PUBLIC_APP_NAME: "PropertySales OS"
-        NEXT_PUBLIC_MAP_PROVIDER: leaflet-osm
-        NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: Root
-        NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET: System
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001}
+        NEXT_PUBLIC_WS_URL: ${NEXT_PUBLIC_WS_URL:-http://localhost:3001}
+        NEXT_PUBLIC_APP_NAME: ${NEXT_PUBLIC_APP_NAME:-"PropertySales OS"}
+        NEXT_PUBLIC_MAP_PROVIDER: ${NEXT_PUBLIC_MAP_PROVIDER:-leaflet-osm}
+        NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:-Root}
+        NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET: ${NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET:-System}
       cache_from:
         - type=local,src=/tmp/.buildx-cache-frontend
     container_name: crm_frontend
     restart: unless-stopped
     env_file:
-      - ./Frontend/.env.docker
+      - .env
     environment:
       - INTERNAL_API_URL=http://backend:3001
+      - PORT=3000
     ports:
       - "3000:3000"
     networks:
