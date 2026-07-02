@@ -63,8 +63,6 @@ services:
         -c synchronous_commit=off
         -c wal_compression=on
         -c log_min_duration_statement=500
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       # Init SQL: enable pg_trgm & pgcrypto on first boot
@@ -120,8 +118,6 @@ services:
         --maxmemory-policy noeviction
         --save 60 1000
         --loglevel warning
-    ports:
-      - "6379:6379"
     volumes:
       - redisdata:/data
     networks:
@@ -146,8 +142,6 @@ services:
       - .env
     environment:
       - PORT=3001
-    ports:
-      - "3001:3001"
     networks:
       - crm_net
     depends_on:
@@ -185,8 +179,6 @@ services:
     environment:
       - INTERNAL_API_URL=http://backend:3001
       - PORT=3000
-    ports:
-      - "3000:3000"
     networks:
       - crm_net
     depends_on:
