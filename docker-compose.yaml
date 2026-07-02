@@ -71,7 +71,6 @@ services:
     image: prodrigestivill/postgres-backup-local
     container_name: crm_pgbackups
     restart: unless-stopped
-    user: postgres:postgres
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_DB: propertysales_db
