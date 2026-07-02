@@ -1,6 +1,6 @@
 [submodule "Backend"]
 	path = Backend
-	url = https://github.com/luminus9Aug/Real-Estate-CRM-Backend.git
+	url = ../Real-Estate-CRM-Backend.git
 [submodule "Frontend"]
 	path = Frontend
-	url = https://github.com/luminus9Aug/dealwhisperer-os.git
+	url = ../dealwhisperer-os.git
