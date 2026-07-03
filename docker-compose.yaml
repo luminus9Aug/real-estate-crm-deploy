@@ -174,13 +174,13 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    ports:
+      - "3000:3000"
     healthcheck:
-      interval: 20s
-      timeout: 10s
-      retries: 10
-      start_period: 60s # Give Next.js more time to start
+      interval: 30s
+      timeout: 15s
+      retries: 12
+      start_period: 90s
       test:
         - CMD-SHELL
         - 'wget --no-verbose --tries=1 --spider http://127.0.0.1:3000/ || exit 1'
-    ports:
-      - "3000:3000"
