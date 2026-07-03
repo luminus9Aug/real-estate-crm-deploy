@@ -175,6 +175,10 @@ services:
       backend:
         condition: service_healthy
     healthcheck:
-      <<: *healthcheck-defaults
-      test: ["CMD-SHELL", "wget -qO- http://localhost:3000 || exit 1"]
-      start_period: 30s
+      interval: 15s
+      timeout: 10s
+      retries: 8
+      start_period: 45s
+      test:
+        - CMD-SHELL
+        - 'wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1'
