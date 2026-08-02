@@ -132,6 +132,8 @@ services:
       - .env
     environment:
       - PORT=3001
+      - DATABASE_URL=${DATABASE_URL:-postgresql://propertysales:propertysales@postgres:5432/propertysales_db?schema=public}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
     networks:
       - crm_net
     depends_on:
@@ -142,7 +144,7 @@ services:
     healthcheck:
       <<: *healthcheck-defaults
       test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3001/health || exit 1"]
-      start_period: 40s
+      start_period: 60s
 
   # ───────────────────────────────────────────────────────────
   # 4. Frontend — Next.js 14 (standalone output)
