@@ -45,7 +45,6 @@ services:
   # ───────────────────────────────────────────────────────────
   postgres:
     image: postgres:16-alpine
-    container_name: crm_postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: propertysales
@@ -69,7 +68,6 @@ services:
   # ───────────────────────────────────────────────────────────
   pgbackups:
     image: prodrigestivill/postgres-backup-local
-    container_name: crm_pgbackups
     restart: unless-stopped
     environment:
       POSTGRES_HOST: postgres
@@ -96,7 +94,6 @@ services:
   # ───────────────────────────────────────────────────────────
   redis:
     image: redis:7-alpine
-    container_name: crm_redis
     restart: unless-stopped
     # Persistence: AOF (appendonly) for durability
     # maxmemory 256mb with allkeys-lru eviction for cache efficiency
@@ -126,7 +123,6 @@ services:
       # Enable BuildKit cache (requires DOCKER_BUILDKIT=1 or Docker 23+)
       cache_from:
         - type=local,src=/tmp/.buildx-cache-backend
-    container_name: crm_backend
     restart: unless-stopped
     env_file:
       - .env
@@ -167,7 +163,6 @@ services:
         NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET: ${NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET:-System}
       cache_from:
         - type=local,src=/tmp/.buildx-cache-frontend
-    container_name: crm_frontend
     restart: unless-stopped
     env_file:
       - .env
