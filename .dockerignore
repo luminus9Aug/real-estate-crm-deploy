@@ -1,0 +1,7 @@
+# Docker build cache (local BuildKit cache dirs)
+/tmp/.buildx-cache-backend
+/tmp/.buildx-cache-frontend
+
+# Docker env files (contain secrets — never commit)
+Backend/.env.docker
+Frontend/.env.docker
