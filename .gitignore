@@ -1,2 +1,7 @@
 # Docker
 infra/postgres/backups/
+/BE_docs
+/FE_docs
+/.agent/
+/.env
+/node_modules
