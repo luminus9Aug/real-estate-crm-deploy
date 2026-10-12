@@ -5,3 +5,10 @@ infra/postgres/backups/
 /.agent/
 /.env
 /node_modules
+.antigravityignore
+.DS_Store
+setup_antigravity_workspace.py
+.agents
+.antigravity
+dump.agent
+
