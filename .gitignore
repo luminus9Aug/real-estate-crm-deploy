@@ -12,3 +12,4 @@ setup_antigravity_workspace.py
 .antigravity
 dump.agent
 
+agents/*
